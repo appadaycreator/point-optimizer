@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ポイント・マイル最適化診断 | 生活パターンから年間獲得ポイントを最大化</title>
+  <meta name="description" content="生活パターン・利用店舗からポイント還元率を最大化するカード・サービスの組み合わせを8問で診断。年間獲得ポイント試算付き。">
+  <link rel="canonical" href="https://appadaycreator.github.io/point-optimizer/">
+  <meta property="og:title" content="ポイント・マイル最適化診断 | 年間ポイント最大化">
+  <meta property="og:description" content="生活パターンからポイント還元率を最大化するカード・サービスの組み合わせを診断。年間ポイント試算付き。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://appadaycreator.github.io/point-optimizer/">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ポイント・マイル最適化診断",
+    "url": "https://appadaycreator.github.io/point-optimizer/",
+    "description": "生活パターンからポイント還元率を最大化するカードとサービスを診断するツール。",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web"
+  }
+  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TXQGZRF9');</script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","s3t9vl8h3v");</script>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8427583028015858" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    window.onerror = function(msg, src, line, col, err) { console.error('Global error:', msg, src, line, col, err); return false; };
+    window.addEventListener('unhandledrejection', function(e) { console.error('Unhandled rejection:', e.reason); });
+  </script>
+  <style>
+    .choice-btn { transition: all 0.2s; cursor: pointer; }
+    .choice-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    .choice-btn.selected { border-color: #f59e0b; background: #fffbeb; color: #92400e; }
+    .point-counter { animation: countUp 0.8s ease; }
+    @keyframes countUp { from{opacity:0;transform:scale(0.7)} to{opacity:1;transform:scale(1)} }
+    .card-combo { transition: all 0.2s; }
+    .card-combo:hover { transform: translateY(-2px); }
+    .fade-in { animation: fadeIn 0.5s ease; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-amber-50 to-yellow-100 min-h-screen text-gray-800">
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TXQGZRF9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <div class="container mx-auto px-4 py-6 max-w-lg">
+    <div class="text-center mb-6">
+      <h1 class="text-2xl font-bold text-amber-700 mb-1">💳 ポイント・マイル最適化診断</h1>
+      <p class="text-amber-500 text-sm">8問でわかる！年間獲得ポイントを最大化する方法</p>
+    </div>
+
+    <!-- AdSense -->
+    <div class="mb-4">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8427583028015858" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- Top Screen -->
+    <div id="topScreen" class="bg-white rounded-2xl shadow-lg p-6 mb-4">
+      <div class="text-center mb-5">
+        <div class="text-5xl mb-3">💰</div>
+        <h2 class="text-lg font-bold mb-2">ポイントを最大化する組み合わせは？</h2>
+        <p class="text-gray-500 text-sm leading-relaxed">生活パターンや利用する店舗・サービスを教えてください。あなたに最適なカードの組み合わせと年間獲得ポイントの試算をご提案します。</p>
+      </div>
+      <div class="grid grid-cols-2 gap-3 mb-5 text-sm text-center">
+        <div class="bg-amber-50 rounded-xl p-3"><div class="text-xl mb-1">📊</div><div class="font-bold text-amber-700">8問診断</div></div>
+        <div class="bg-amber-50 rounded-xl p-3"><div class="text-xl mb-1">💳</div><div class="font-bold text-amber-700">最適カード提案</div></div>
+        <div class="bg-amber-50 rounded-xl p-3"><div class="text-xl mb-1">🔢</div><div class="font-bold text-amber-700">年間ポイント試算</div></div>
+        <div class="bg-amber-50 rounded-xl p-3"><div class="text-xl mb-1">🎯</div><div class="font-bold text-amber-700">攻略ポイント</div></div>
+      </div>
+      <button onclick="startDiagnosis()" class="w-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-white font-bold py-3 rounded-xl text-lg transition shadow-md">
+        💳 診断スタート！
+      </button>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div id="quizScreen" class="hidden">
+      <div class="bg-white rounded-2xl shadow-lg p-4 mb-4">
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-sm font-bold text-amber-600">質問 <span id="qNum">1</span>/8</span>
+          <span class="text-sm text-gray-400"><span id="qPct">0</span>% 完了</span>
+        </div>
+        <div class="bg-amber-100 rounded-full h-2 mb-4">
+          <div id="progressBar" class="bg-amber-500 h-2 rounded-full transition-all duration-500" style="width:0%"></div>
+        </div>
+        <div id="qCategory" class="text-xs font-bold text-amber-500 uppercase tracking-wide mb-1"></div>
+        <div id="qText" class="text-base font-bold text-gray-800 mb-4 leading-relaxed"></div>
+        <div id="choicesContainer" class="grid gap-2"></div>
+      </div>
+      <button onclick="prevQ()" id="prevBtn" class="hidden w-full bg-gray-100 hover:bg-gray-200 text-gray-600 font-bold py-2 rounded-xl text-sm transition mb-4">← 前の質問へ</button>
+    </div>
+
+    <!-- Result Screen -->
+    <div id="resultScreen" class="hidden fade-in">
+      <div class="bg-white rounded-2xl shadow-lg p-5 mb-4">
+        <h2 class="text-xl font-bold text-center text-amber-700 mb-4">💰 最適化診断結果</h2>
+
+        <!-- Point estimate -->
+        <div class="bg-gradient-to-r from-amber-400 to-yellow-400 rounded-xl p-4 text-white text-center mb-4">
+          <div class="text-sm font-bold mb-1">推定年間獲得ポイント</div>
+          <div id="annualPoints" class="text-4xl font-bold point-counter mb-1">0</div>
+          <div class="text-sm opacity-90">ポイント（約<span id="annualYen">0</span>円相当）</div>
+        </div>
+
+        <!-- Best Combo -->
+        <div class="mb-4">
+          <h3 class="font-bold text-amber-700 mb-2">💳 おすすめカード組み合わせ（2〜3枚）</h3>
+          <div id="cardCombos" class="grid gap-3"></div>
+        </div>
+
+        <!-- Strategy -->
+        <div class="bg-amber-50 rounded-xl p-4 mb-4">
+          <h3 class="font-bold text-amber-700 mb-2">🎯 攻略ポイント</h3>
+          <div id="strategyList" class="text-sm text-gray-700 grid gap-2"></div>
+        </div>
+
+        <!-- Tips -->
+        <div class="bg-blue-50 rounded-xl p-4 mb-4">
+          <h3 class="font-bold text-blue-700 mb-2">💡 ポイント活用の注意点</h3>
+          <ul class="text-sm text-gray-700 grid gap-1">
+            <li>・カードは2〜3枚まで。管理しきれないと逆効果</li>
+            <li>・年会費の元が取れるか必ず計算する</li>
+            <li>・ポイントには有効期限がある。定期的に確認を</li>
+            <li>・ポイントのために不要な買い物はNG</li>
+          </ul>
+        </div>
+
+        <button onclick="restart()" class="w-full bg-gradient-to-r from-amber-500 to-yellow-500 text-white font-bold py-3 rounded-xl transition hover:from-amber-400 hover:to-yellow-400 mb-2">🔄 もう一度診断する</button>
+      </div>
+
+      <div class="mb-4">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8427583028015858" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+    </div>
+
+    <!-- Affiliates -->
+    <div class="bg-white rounded-2xl shadow-lg p-4 mb-3">
+      <h3 class="font-bold text-gray-800 mb-2 text-sm">📚 Amazonでポイント活用本を</h3>
+      <a href="https://www.amazon.co.jp/s?k=ポイント活用+クレジットカード+節約&tag=appadaycrea0f-22" target="_blank" rel="noopener" class="block bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-bold py-2 px-4 rounded-lg text-center text-sm transition">
+        🛒 Amazonでポイント活用本を見る
+      </a>
+    </div>
+    <div class="bg-white rounded-2xl shadow-lg p-4 mb-3">
+      <h3 class="font-bold text-gray-800 mb-2 text-sm">🎧 audiobook.jpでお金の知識を</h3>
+      <a href="https://px.a8.net/svt/ejp?a8mat=4AVCO8+GFT1HM+5JTC+60OXE" target="_blank" rel="noopener" class="block bg-orange-500 hover:bg-orange-400 text-white font-bold py-2 px-4 rounded-lg text-center text-sm transition">
+        🎧 audiobook.jpで節約本を聴く
+      </a>
+      <img src="https://www11.a8.net/0.gif?a8mat=4AVCO8+GFT1HM+5JTC+60OXE" width="1" height="1" alt="" style="border:none;">
+    </div>
+    <div class="bg-white rounded-2xl shadow-lg p-4 mb-4">
+      <h3 class="font-bold text-gray-800 mb-3 text-sm">🔗 関連サービス</h3>
+      <div class="grid gap-2">
+        <a href="https://appadaycreator.github.io/credit-card-finder/" class="bg-amber-50 hover:bg-amber-100 rounded-lg p-3 text-sm transition text-amber-700 font-medium">💳 クレジットカードファインダー</a>
+        <a href="https://appadaycreator.github.io/furusato-tax-calculator/" class="bg-amber-50 hover:bg-amber-100 rounded-lg p-3 text-sm transition text-amber-700 font-medium">🏠 ふるさと納税計算機</a>
+        <a href="https://appadaycreator.github.io/household-budget-analyzer/" class="bg-amber-50 hover:bg-amber-100 rounded-lg p-3 text-sm transition text-amber-700 font-medium">📊 家計分析ツール</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {q:'月の総支出額はどのくらい？',cat:'支出額',choices:['💴 〜10万円','💵 10〜20万円','💰 20〜30万円','💎 30万円以上']},
+      {q:'よく使う店舗・サービスは？',cat:'利用店舗',choices:['🏪 コンビニ・スーパーが中心','🛒 ECサイト（Amazon/楽天）がメイン','🍽️ 飲食店・外食が多い','✈️ 旅行・出張が多い']},
+      {q:'AmazonとRakutenどちら派？',cat:'EC利用',choices:['📦 Amazon派','🛒 楽天市場派','⚖️ 両方使う','🔍 どちらも使わない']},
+      {q:'電子マネーはよく使う？',cat:'電子マネー',choices:['📱 Suica・Pasmoで交通と買い物','💳 PayPayなどQRコード決済','💴 iD・QUICPayなどクレカ系','💵 ほとんど使わない']},
+      {q:'マイル（航空マイル）は貯めたい？',cat:'マイル',choices:['✈️ ANAマイルを積極的に貯めたい','🛫 JALマイルを貯めたい','🤔 どちらでもいい','🏠 旅行はほとんどしない']},
+      {q:'クレジットカードの希望枚数は？',cat:'カード枚数',choices:['1️⃣ 1枚にまとめたい','2️⃣ 2〜3枚の最小構成','📋 目的別に4〜5枚','♾️ 枚数は気にしない']},
+      {q:'ポイントの主な使い道は？',cat:'ポイント用途',choices:['🛒 商品や特典と交換','✈️ マイルや旅行に使いたい','💴 キャッシュバックで現金化','📊 投資・証券に使いたい']},
+      {q:'年会費の許容額は？',cat:'年会費',choices:['🆓 無料カードのみ','💴 1枚あたり〜5,000円/年','💵 5,000〜15,000円/年','💎 コスパが良ければ高くてもOK']},
+    ];
+
+    const cardCombinations = [
+      {
+        name:'楽天経済圏 最強コンボ',
+        description:'楽天ユーザー向け。楽天カードとSPUで効率よくポイントを積み上げる基本戦略。',
+        cards:[
+          {name:'楽天カード',rate:'1〜5%',note:'楽天市場で常時+1倍。SPU最大+16倍'},
+          {name:'楽天ゴールドカード',rate:'1〜2%',note:'楽天市場+2倍。年会費2,200円'},
+        ],
+        baseMultiplier:1.5,
+        tags:['楽天派','コンビニ','EC'],
+        strategy:'楽天SPUを最大化！楽天モバイル・楽天保険などサービス利用でポイント倍率UP'
+      },
+      {
+        name:'三井住友NL×PayPay最強コンボ',
+        description:'コンビニ・マクドナルドで最大7〜10%還元。外食・コンビニが多い方に最適。',
+        cards:[
+          {name:'三井住友カードNL',rate:'最大20%',note:'コンビニ・マクドナルドで7〜20%還元'},
+          {name:'PayPayカード',rate:'1〜1.5%',note:'PayPay連携で還元率アップ'},
+        ],
+        baseMultiplier:2.0,
+        tags:['コンビニ','外食','スマホ払い'],
+        strategy:'コンビニでのタッチ決済で最大20%還元！PayPayとの二刀流が最強'
+      },
+      {
+        name:'ANAマイル最大化コンボ',
+        description:'旅行・出張が多い方向け。マイルを効率よく貯めてビジネスクラスや特典航空券に。',
+        cards:[
+          {name:'ANAワイドゴールドカード',rate:'1〜2マイル/100円',note:'ANAグループ利用でマイル2倍'},
+          {name:'ANAアメックスゴールド',rate:'1マイル/100円',note:'レストラン・ホテル優待あり'},
+        ],
+        baseMultiplier:1.8,
+        tags:['旅行','出張','ANA派'],
+        strategy:'ANAカードで日常の支払いをマイルに。ふるさと納税でもマイルが貯まる'
+      },
+      {
+        name:'Amazonヘビーユーザーコンボ',
+        description:'Amazon利用が多い方に最適。ビジネスも含めて総合的にポイントを最大化。',
+        cards:[
+          {name:'Amazon Prime Visaカード',rate:'1〜2%',note:'Amazon購入で2%還元。Prime特典付き'},
+          {name:'リクルートカード',rate:'1.2%',note:'どこでも1.2%の高還元率'},
+        ],
+        baseMultiplier:1.6,
+        tags:['Amazon派','EC','幅広い用途'],
+        strategy:'Amazonの買い物は必ずAmazonカードで。日常はリクルートカードで1.2%均一還元'
+      },
+      {
+        name:'投資家向けポイント最大化コンボ',
+        description:'証券投資と連携してポイントをさらに増やす戦略。資産形成しながらポイントも増える。',
+        cards:[
+          {name:'楽天カード（投資連携）',rate:'0.5〜1%',note:'楽天証券投信積立でポイント付与'},
+          {name:'三井住友カードNL（SBI連携）',rate:'0.1〜0.5%',note:'SBI証券積立でVポイント付与'},
+        ],
+        baseMultiplier:1.3,
+        tags:['投資家','NISA','資産形成'],
+        strategy:'積立投資でもポイントが貯まる時代！毎月の積立額をカード払いに変えてポイント二重取り'
+      }
+    ];
+
+    const monthlySpends = [100000, 150000, 250000, 350000];
+
+    let current = 0;
+    let answers = {};
+    const TOTAL = 8;
+
+    function startDiagnosis() {
+      current = 0; answers = {};
+      document.getElementById('topScreen').classList.add('hidden');
+      document.getElementById('quizScreen').classList.remove('hidden');
+      showQ();
+    }
+
+    function showQ() {
+      const q = questions[current];
+      document.getElementById('qNum').textContent = current+1;
+      document.getElementById('qPct').textContent = Math.round(current/TOTAL*100);
+      document.getElementById('progressBar').style.width = ((current/TOTAL)*100)+'%';
+      document.getElementById('qCategory').textContent = q.cat;
+      document.getElementById('qText').textContent = q.q;
+      const container = document.getElementById('choicesContainer');
+      container.innerHTML = '';
+      q.choices.forEach((c,i) => {
+        const btn = document.createElement('div');
+        btn.className = 'choice-btn border-2 border-gray-200 rounded-xl p-3 text-sm font-medium';
+        if(answers[current] === i) btn.classList.add('selected');
+        btn.textContent = c;
+        btn.onclick = () => selectAnswer(i, btn);
+        container.appendChild(btn);
+      });
+      document.getElementById('prevBtn').style.display = current > 0 ? 'block' : 'none';
+    }
+
+    function selectAnswer(idx, btn) {
+      answers[current] = idx;
+      document.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      setTimeout(() => {
+        if(current < TOTAL-1) { current++; showQ(); }
+        else { showResult(); }
+      }, 350);
+    }
+
+    function prevQ() {
+      if(current > 0) { current--; showQ(); }
+    }
+
+    function calcBestCombos() {
+      const scores = cardCombinations.map((_,i)=>({idx:i,score:0}));
+      // Q2: EC利用
+      if(answers[2]===0) { scores[3].score+=3; } // Amazon
+      if(answers[2]===1) { scores[0].score+=3; } // 楽天
+      if(answers[2]===2) { scores[0].score+=1; scores[3].score+=1; }
+      // Q4: マイル
+      if(answers[4]===0||answers[4]===1) { scores[2].score+=3; }
+      // Q1: 店舗
+      if(answers[1]===0) { scores[1].score+=3; } // コンビニ
+      if(answers[1]===2) { scores[1].score+=2; } // 外食
+      if(answers[1]===3) { scores[2].score+=2; } // 旅行
+      // Q6: 用途
+      if(answers[6]===1) { scores[2].score+=2; } // マイル
+      if(answers[6]===2) { scores[1].score+=1; scores[0].score+=1; }
+      if(answers[6]===3) { scores[4].score+=3; } // 投資
+      return scores.sort((a,b)=>b.score-a.score).slice(0,3);
+    }
+
+    function showResult() {
+      document.getElementById('quizScreen').classList.add('hidden');
+      document.getElementById('resultScreen').classList.remove('hidden');
+      const top3 = calcBestCombos();
+      const spend = monthlySpends[answers[0] || 1];
+      const best = cardCombinations[top3[0].idx];
+      const annual = Math.floor(spend * 12 * best.baseMultiplier * 0.01);
+      document.getElementById('annualPoints').textContent = annual.toLocaleString();
+      document.getElementById('annualYen').textContent = annual.toLocaleString();
+
+      const comboEl = document.getElementById('cardCombos');
+      comboEl.innerHTML = top3.map(({idx},i) => {
+        const c = cardCombinations[idx];
+        const rankEmoji = ['🥇','🥈','🥉'][i];
+        return `
+          <div class="card-combo border-2 border-amber-200 rounded-xl p-4 bg-amber-50">
+            <div class="text-xs font-bold text-amber-600 mb-1">${rankEmoji} ${i===0?'最もおすすめ':'第'+['','','2','3'][i+1]+'位'}</div>
+            <div class="font-bold text-gray-800 mb-2">${c.name}</div>
+            <p class="text-xs text-gray-500 mb-3">${c.description}</p>
+            ${c.cards.map(card=>`
+              <div class="bg-white rounded-lg p-2 mb-2">
+                <div class="font-bold text-sm">${card.name}</div>
+                <div class="text-xs text-amber-600">還元率: ${card.rate}</div>
+                <div class="text-xs text-gray-500">${card.note}</div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }).join('');
+
+      const strategies = [
+        '💳 ' + best.strategy,
+        '📊 複数カードを使い分けて、店舗別に最高還元率を確保する',
+        '🔢 年間支出の1〜2%をポイント換算すると' + Math.floor(spend*12*0.015).toLocaleString() + '円以上の節約に',
+        '⏰ ポイントの有効期限は毎月確認。失効させないよう定期利用を',
+        '🎯 楽天・PayPayなどのキャンペーン時に大型購入でポイント爆増'
+      ];
+      document.getElementById('strategyList').innerHTML = strategies.map(s=>`<div class="flex gap-2 items-start text-sm"><span>${s}</span></div>`).join('');
+    }
+
+    function restart() {
+      document.getElementById('resultScreen').classList.add('hidden');
+      document.getElementById('topScreen').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
