@@ -4,7 +4,7 @@
   "description": "生活パターン・利用店舗からポイント還元率を最大化するカード・サービスの組み合わせを8問で診断。年間獲得ポイント試算付き。",
   "start_url": "/point-optimizer/",
   "display": "standalone",
-  "background_color": "#f8faf9",
+  "background_color": "#ffffff",
   "theme_color": "#7c3aed",
   "lang": "ja",
   "icons": [
