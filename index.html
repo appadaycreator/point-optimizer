@@ -59,6 +59,7 @@ button, .btn, .btn-primary, .option-btn, [role="button"] { min-height: 48px; min
 }
 
 .card{background:#fff;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.08);overflow:hidden;}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"このサービスは無料ですか？","acceptedAnswer":{"@type":"Answer","text":"はい、完全無料・登録不要でご利用いただけます。"}},{"@type":"Question","name":"入力データはどこに保存されますか？","acceptedAnswer":{"@type":"Answer","text":"お使いのデバイス内にのみ保存されます。外部送信は行いません。"}},{"@type":"Question","name":"結果はどのくらい正確ですか？","acceptedAnswer":{"@type":"Answer","text":"あくまで参考情報です。重要な判断の際は専門家にご相談ください。"}},{"@type":"Question","name":"どのような人が使っていますか？","acceptedAnswer":{"@type":"Answer","text":"初心者から専門家まで、多くの方にご利用いただいています。特に決断が必要な場面で活躍します。"}},{"@type":"Question","name":"結果をシェアできますか？","acceptedAnswer":{"@type":"Answer","text":"はい、診断結果はスクリーンショットやURLで友人・家族とシェアできます。"}},{"@type":"Question","name":"有料プランはありますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ、すべての機能を完全無料でご利用いただけます。"}}]}</script>
 <script type="application/ld+json">
@@ -116,7 +117,7 @@ button, .btn, .btn-primary, .option-btn, [role="button"] { min-height: 48px; min
 <body class="bg-gradient-to-br from-amber-50 to-yellow-100 min-h-screen text-gray-800"><a href="#main" class="sr-only">本文へスキップ</a>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TXQGZRF9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-  <div class="container mx-auto px-4 py-6 max-w-lg" role="main">
+  <div class="container mx-auto px-4 py-6 max-w-lg" role="main" id="main">
     <div class="text-center mb-6">
       <h1 class="text-2xl font-bold text-amber-700 mb-1">💳 ポイント・マイル最適化診断</h1>
       <p class="text-amber-500 text-sm">8問でわかる！年間獲得ポイントを最大化する方法</p>
@@ -465,7 +466,7 @@ button, .btn, .btn-primary, .option-btn, [role="button"] { min-height: 48px; min
           <p class="text-xs text-gray-400 mt-1">— 田中さん（30代・会社員）★★★★★</p>
         </div>
         <div class="bg-gray-50 rounded-lg p-3">
-          <p class="text-xs text-gray-700">「無料でここまで詳しく診断できるとは思いませんでした。」</p>
+          <p class="text-xs text-gray-700">「無料でここまで詳しく調べられるとは思いませんでした。」</p>
           <p class="text-xs text-gray-400 mt-1">— 佐藤さん（40代・主婦）★★★★★</p>
         </div>
         <div class="bg-gray-50 rounded-lg p-3">
