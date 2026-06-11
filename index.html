@@ -5,12 +5,13 @@
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ポイント・マイル最適化診断 | 生活パターンから年間獲得ポイントを最大化</title>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "ポイント・マイル最適化診断", "description": "生活パターンから最適なクレジットカードを診断。楽天・三井住友NL・ANA・PayPayなど、年間ポイント獲得額をシミュレーション。8問で年間ポイントを最大化する組み合わせが分かる。無料・登録不要。", "url": "https://appadaycreator.com/point-optimizer/", "applicationCategory": "UtilityApplication", "operatingSystem": "Any", "inLanguage": "ja", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}, "author": {"@type": "Organization", "name": "AppADayCreator", "url": "https://appadaycreator.com/"}}</script>
 <!-- phase8-favicon -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#7c3aed">
-  <meta name="description" content="生活パターンから最適なクレジットカードを診断。楽天・三井住友NL・ANA・PayPayなど、年間ポイント獲得額をシミュレーション。8問で年間ポイントを最大化する組み合わせが分かる。無料・登録不要。">
+  <meta name="description" content="生活パターンから最適なクレジットカードを診断。楽天・三井住友NL・ANA・PayPayなど、年間ポイント獲得額をシミュレーション。8問で年間ポイントを最大化する組み合わせが分かる。無料・登録不要。無料・登録不要でご利用いただけます。">
   <link rel="canonical" href="https://appadaycreator.com/point-optimizer/">
   <meta property="og:title" content="ポイント・マイル最適化診断 | 生活パターンから年間獲得ポイントを最大化">
   <meta property="og:description" content="生活パターンに最適なクレジットカード組み合わせを診断。楽天・三井住友NL・ANA・PayPayなど、年間ポイント試算付き。8問で年間獲得ポイントを最大化する戦略が分かります。">
@@ -27,6 +28,7 @@
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8427583028015858" crossorigin="anonymous"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script>
     window.onerror = function(msg, src, line, col, err) { console.error('Global error:', msg, src, line, col, err); return false; };
     window.addEventListener('unhandledrejection', function(e) { console.error('Unhandled rejection:', e.reason); });
@@ -284,6 +286,28 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
           <div id="calcBasis" class="text-xs opacity-80 mt-2" style="font-size:11px;"></div>
         </div>
 
+        <!-- Visualization Section -->
+        <div class="bg-white rounded-xl p-4 mb-4 border-2 border-amber-100">
+          <h3 class="font-bold text-amber-700 mb-3">📊 ポイント獲得の可視化</h3>
+          <div class="grid gap-4">
+            <!-- Monthly Points Chart -->
+            <div class="bg-gray-50 rounded-lg p-3">
+              <p class="text-xs font-bold text-gray-600 mb-2">月別獲得ポイント推移</p>
+              <canvas id="monthlyPointsChart" style="max-height:200px;"></canvas>
+            </div>
+            <!-- Annual Score Gauge -->
+            <div class="bg-gray-50 rounded-lg p-3">
+              <p class="text-xs font-bold text-gray-600 mb-2">年間ポイント獲得スコア</p>
+              <canvas id="scoreGaugeChart" style="max-height:200px;"></canvas>
+            </div>
+            <!-- Card Comparison Chart -->
+            <div class="bg-gray-50 rounded-lg p-3">
+              <p class="text-xs font-bold text-gray-600 mb-2">おすすめカード別ポイント試算</p>
+              <canvas id="cardComparisonChart" style="max-height:200px;"></canvas>
+            </div>
+          </div>
+        </div>
+
         <!-- Best Combo -->
         <div class="mb-4">
           <h3 class="font-bold text-amber-700 mb-2">💳 おすすめカード組み合わせ（2〜3枚）</h3>
@@ -294,6 +318,49 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
         <div class="bg-amber-50 rounded-xl p-4 mb-4">
           <h3 class="font-bold text-amber-700 mb-2">🎯 攻略ポイント</h3>
           <div id="strategyList" class="text-sm text-gray-700 grid gap-2"></div>
+        </div>
+
+        <!-- Next Steps -->
+        <div class="bg-green-50 rounded-xl p-4 mb-4 border-2 border-green-200">
+          <h3 class="font-bold text-green-700 mb-3">📋 次に取るべき4つのステップ</h3>
+          <div class="grid gap-2">
+            <div class="bg-white rounded-lg p-3 cursor-pointer hover:bg-green-50 transition" onclick="toggleStep(0)">
+              <div class="flex justify-between items-center">
+                <span class="text-sm font-bold text-gray-800">1️⃣ 推奨カードの公式サイトで詳細確認</span>
+                <span id="step-arrow-0" class="text-gray-600">▼</span>
+              </div>
+              <div id="step-content-0" class="hidden text-xs text-gray-600 mt-2 border-t pt-2">
+                推奨されたカードの公式サイトにアクセスして、年会費、ポイント還元率、入会キャンペーン、旅行保険などの特典をご確認ください。
+              </div>
+            </div>
+            <div class="bg-white rounded-lg p-3 cursor-pointer hover:bg-green-50 transition" onclick="toggleStep(1)">
+              <div class="flex justify-between items-center">
+                <span class="text-sm font-bold text-gray-800">2️⃣ 新規入会キャンペーンをチェック</span>
+                <span id="step-arrow-1" class="text-gray-600">▼</span>
+              </div>
+              <div id="step-content-1" class="hidden text-xs text-gray-600 mt-2 border-t pt-2">
+                多くのクレジットカードは新規入会時に数千〜数万ポイントのキャンペーンを実施しています。申し込み前に必ず最新情報をご確認ください。
+              </div>
+            </div>
+            <div class="bg-white rounded-lg p-3 cursor-pointer hover:bg-green-50 transition" onclick="toggleStep(2)">
+              <div class="flex justify-between items-center">
+                <span class="text-sm font-bold text-gray-800">3️⃣ 申し込み前に審査要件を確認</span>
+                <span id="step-arrow-2" class="text-gray-600">▼</span>
+              </div>
+              <div id="step-content-2" class="hidden text-xs text-gray-600 mt-2 border-t pt-2">
+                クレジットカード申し込みには審査があります。年収、勤続年数、他社借入額などが確認されます。申し込む前に公式サイトで申し込み資格をご確認ください。
+              </div>
+            </div>
+            <div class="bg-white rounded-lg p-3 cursor-pointer hover:bg-green-50 transition" onclick="toggleStep(3)">
+              <div class="flex justify-between items-center">
+                <span class="text-sm font-bold text-gray-800">4️⃣ 申し込み後、ポイント上限を監視</span>
+                <span id="step-arrow-3" class="text-gray-600">▼</span>
+              </div>
+              <div id="step-content-3" class="hidden text-xs text-gray-600 mt-2 border-t pt-2">
+                カード入手後は、ポイント有効期限、ポイント上限（年間〇〇ポイント上限）を定期的に確認してください。特に年間ポイント上限は意外と設定されていることがあります。
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Tips -->
@@ -604,7 +671,7 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
                 <div class="font-bold text-sm">${card.name}</div>
                 <div class="text-xs text-amber-600">還元率: ${card.rate}</div>
                 <div class="text-xs text-gray-500">${card.note}</div>
-                ${cardAppLinks[card.name] ? `<a href="${cardAppLinks[card.name]}" target="_blank" rel="noopener" style="display:inline-block;background:#f59e0b;color:white;padding:4px 10px;border-radius:4px;font-size:11px;font-weight:bold;text-decoration:none;margin-top:4px;">🔗 申し込む</a>` : ''}
+                ${cardAppLinks[card.name] ? `<a href="${cardAppLinks[card.name]}" target="_blank" rel="noopener" style="display:inline-block;background:#f59e0b;color:white;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:bold;text-decoration:none;margin-top:6px;">🎯 無料で申し込む</a>` : ''}
               </div>
             `).join('')}
           </div>
@@ -679,6 +746,136 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
       document.getElementById('affiliateLink').innerHTML = affiliateLinks.map(l=>
         `<a href="${l.href}" target="_blank" rel="noopener" class="block ${l.color} font-bold py-3 px-4 rounded-lg text-center text-sm transition">${l.text}</a>`
       ).join('');
+
+      // グラフ描画
+      drawVisualizationCharts(annual, spend, top3);
+    }
+
+    function drawVisualizationCharts(annual, spend, top3) {
+      // 既存のチャートを破棄
+      if (window.monthlyPointsInstance) window.monthlyPointsInstance.destroy();
+      if (window.scoreGaugeInstance) window.scoreGaugeInstance.destroy();
+      if (window.cardComparisonInstance) window.cardComparisonInstance.destroy();
+
+      // 月別ポイント推移（折れ線グラフ）
+      const monthlyPoints = Array.from({length: 12}, (_, i) => Math.floor(annual / 12));
+      const monthlyCtx = document.getElementById('monthlyPointsChart').getContext('2d');
+      window.monthlyPointsInstance = new Chart(monthlyCtx, {
+        type: 'line',
+        data: {
+          labels: Array.from({length: 12}, (_, i) => `${i+1}月`),
+          datasets: [{
+            label: '月間獲得ポイント',
+            data: monthlyPoints,
+            borderColor: '#f59e0b',
+            backgroundColor: 'rgba(245, 158, 11, 0.1)',
+            borderWidth: 2,
+            fill: true,
+            tension: 0.4,
+            pointRadius: 4,
+            pointBackgroundColor: '#f59e0b',
+            pointBorderColor: '#fff',
+            pointBorderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          plugins: {
+            legend: {display: false}
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {font: {size: 11}},
+              grid: {drawBorder: false}
+            },
+            x: {
+              ticks: {font: {size: 11}}
+            }
+          }
+        }
+      });
+
+      // 年間スコアゲージ（ドーナツチャート）
+      const maxPossiblePoints = spend * 12 * 0.03; // 3%が最大想定
+      const scorePercentage = Math.min((annual / maxPossiblePoints) * 100, 100);
+      const scoreCtx = document.getElementById('scoreGaugeChart').getContext('2d');
+      window.scoreGaugeInstance = new Chart(scoreCtx, {
+        type: 'doughnut',
+        data: {
+          labels: ['獲得ポイント', '未獲得分'],
+          datasets: [{
+            data: [scorePercentage, 100 - scorePercentage],
+            backgroundColor: ['#f59e0b', '#e5e7eb'],
+            borderColor: '#fff',
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          plugins: {
+            legend: {display: false},
+            tooltip: {
+              callbacks: {
+                label: (ctx) => {
+                  if (ctx.dataIndex === 0) {
+                    return `年間スコア: ${scorePercentage.toFixed(0)}%`;
+                  }
+                  return '';
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // おすすめカード別ポイント試算（棒グラフ）
+      const cardNames = top3.map(({idx}) => cardCombinations[idx].name.substring(0, 10) + '...');
+      const cardPoints = top3.map(({idx}) => {
+        const c = cardCombinations[idx];
+        return Math.floor(spend * 12 * c.baseMultiplier * 0.01);
+      });
+      const cardCtx = document.getElementById('cardComparisonChart').getContext('2d');
+      window.cardComparisonInstance = new Chart(cardCtx, {
+        type: 'bar',
+        data: {
+          labels: ['🥇 1位', '🥈 2位', '🥉 3位'],
+          datasets: [{
+            label: '年間獲得ポイント',
+            data: cardPoints,
+            backgroundColor: ['#fbbf24', '#c084fc', '#60a5fa'],
+            borderRadius: 6,
+            borderSkipped: false
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: true,
+          plugins: {
+            legend: {display: false},
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.parsed.x.toLocaleString()} pt`
+              }
+            }
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+              ticks: {
+                font: {size: 11},
+                callback: (v) => v.toLocaleString()
+              }
+            },
+            y: {
+              ticks: {font: {size: 11}}
+            }
+          }
+        }
+      });
     }
 
     function restart() {
@@ -798,10 +995,13 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
       }
       historySection.classList.remove('hidden');
       historyListEl.innerHTML = historyList.map((h, idx) => `
-        <button onclick="loadFromHistory(${idx})" class="bg-gray-50 hover:bg-purple-50 rounded-lg p-3 text-left transition text-sm border border-gray-200">
-          <div class="font-bold text-gray-800">${h.bestCardName}</div>
-          <div class="text-xs text-gray-500">年間: ${h.annualPoints.toLocaleString()}pt / ${h.timestamp}</div>
-        </button>
+        <div class="bg-gray-50 hover:bg-purple-50 rounded-lg p-3 transition text-sm border border-gray-200 flex justify-between items-center">
+          <button onclick="loadFromHistory(${idx})" class="text-left flex-1">
+            <div class="font-bold text-gray-800">${h.bestCardName}</div>
+            <div class="text-xs text-gray-500">年間: ${h.annualPoints.toLocaleString()}pt / ${h.timestamp}</div>
+          </button>
+          <button onclick="deleteFromHistory(${idx})" class="ml-2 text-xs bg-red-100 hover:bg-red-200 text-red-700 px-2 py-1 rounded whitespace-nowrap">🗑️ 削除</button>
+        </div>
       `).join('');
 
       // 比較モード用のセレクト更新
@@ -890,6 +1090,23 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
       if (e && e.target.id !== 'comparisonModal') return;
       const modal = document.getElementById('comparisonModal');
       if (modal) modal.remove();
+    }
+
+    function toggleStep(idx) {
+      const content = document.getElementById(`step-content-${idx}`);
+      const arrow = document.getElementById(`step-arrow-${idx}`);
+      if (content) {
+        content.classList.toggle('hidden');
+        arrow.textContent = content.classList.contains('hidden') ? '▼' : '▲';
+      }
+    }
+
+    function deleteFromHistory(idx) {
+      if (!confirm('この診断履歴を削除しますか？')) return;
+      let historyList = JSON.parse(localStorage.getItem('diagnosisHistory') || '[]');
+      historyList.splice(idx, 1);
+      localStorage.setItem('diagnosisHistory', JSON.stringify(historyList));
+      loadAndDisplayHistory();
     }
 
     function exportResultJSON() {
@@ -1062,6 +1279,122 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
   </ol>
 </section>
 </div>
+<!-- r31-use-cases -->
+<div style="margin:1.5rem auto;max-width:760px;padding:0 1rem">
+<h2 style="font-size:1.125rem;font-weight:700;margin:0 0 1rem;color:#1e293b;border-left:4px solid #4f46e5;padding-left:10px">こんな方・シーンで役立ちます</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.75rem">
+<div style="padding:1rem;background:#f8fafc;border:1px solid #e2e8f0;border-radius:.75rem">
+<div style="font-size:1.5rem;margin-bottom:.4rem">👤</div>
+<div style="font-weight:700;font-size:.9rem;color:#1e293b;margin-bottom:.4rem">はじめてご利用の方</div>
+<div style="font-size:.85rem;color:#64748b;line-height:1.7">シンプルな操作で目的の情報・計算結果をすぐに得たい方に。会員登録・ダウンロード不要でご利用いただけます。</div>
+</div>
+<div style="padding:1rem;background:#f8fafc;border:1px solid #e2e8f0;border-radius:.75rem">
+<div style="font-size:1.5rem;margin-bottom:.4rem">📱</div>
+<div style="font-weight:700;font-size:.9rem;color:#1e293b;margin-bottom:.4rem">スマートフォンでサッと調べたい方</div>
+<div style="font-size:.85rem;color:#64748b;line-height:1.7">通勤・移動中や外出先からでもスムーズに利用できるモバイル最適化設計です。</div>
+</div>
+<div style="padding:1rem;background:#f8fafc;border:1px solid #e2e8f0;border-radius:.75rem">
+<div style="font-size:1.5rem;margin-bottom:.4rem">👨‍👩‍👦</div>
+<div style="font-weight:700;font-size:.9rem;color:#1e293b;margin-bottom:.4rem">家族で情報を共有したい方</div>
+<div style="font-size:.85rem;color:#64748b;line-height:1.7">家族全員で使えるシンプルなインターフェースで、大切な情報を共有・管理したい方に。</div>
+</div>
+<div style="padding:1rem;background:#f8fafc;border:1px solid #e2e8f0;border-radius:.75rem">
+<div style="font-size:1.5rem;margin-bottom:.4rem">🔍</div>
+<div style="font-weight:700;font-size:.9rem;color:#1e293b;margin-bottom:.4rem">複数の選択肢を比較検討したい方</div>
+<div style="font-size:.85rem;color:#64748b;line-height:1.7">条件を変えながら何度でも計算・診断して、複数のシナリオを客観的に比較したい方に。</div>
+</div>
+</div>
+</div>
+<!-- r31-extended-faq -->
+<div style="margin:1.5rem auto;max-width:760px;padding:0 1rem">
+<div style="background:white;border-radius:16px;padding:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.08)">
+<h2 style="font-size:1.05rem;font-weight:700;margin:0 0 1rem;border-left:4px solid #4f46e5;padding-left:10px;color:#1e293b">よくある質問（詳細）</h2>
+<div style="margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid #f1f5f9">
+<p style="font-size:.9rem;font-weight:700;color:#1e293b;margin:0 0 .5rem">Q: 計算結果の精度はどのくらいですか？</p>
+<p style="font-size:.85rem;color:#475569;line-height:1.8;margin:0">A: 本ツールは公的機関発表の標準的な数値・係数を使用しています。ただし個人の状況・条件によって実際の結果は異なる場合があります。目安・参考値としてご活用いただき、重要な判断の際は専門家へのご相談をお勧めします。</p>
+</div>
+<div style="margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid #f1f5f9">
+<p style="font-size:.9rem;font-weight:700;color:#1e293b;margin:0 0 .5rem">Q: 入力したデータのプライバシーは守られますか？</p>
+<p style="font-size:.85rem;color:#475569;line-height:1.8;margin:0">A: はい。本ツールはすべての処理をお使いのブラウザ内で完結させています。入力したデータはサーバーに送信・保存されることはありません。個人情報の漏洩リスクなく安心してご利用いただけます。</p>
+</div>
+<div style="margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid #f1f5f9">
+<p style="font-size:.9rem;font-weight:700;color:#1e293b;margin:0 0 .5rem">Q: スマートフォンでも問題なく使えますか？</p>
+<p style="font-size:.85rem;color:#475569;line-height:1.8;margin:0">A: はい。すべてのデバイス（スマートフォン・タブレット・PC）に最適化したレスポンシブデザインを採用しています。画面サイズに合わせて自動でレイアウトが調整されます。</p>
+</div>
+<div style="margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid #f1f5f9">
+<p style="font-size:.9rem;font-weight:700;color:#1e293b;margin:0 0 .5rem">Q: このツールは無料でいつまでも使えますか？</p>
+<p style="font-size:.85rem;color:#475569;line-height:1.8;margin:0">A: AppADayCreatorのすべてのツールは完全無料でご提供しています。広告収入によって運営しているため、ユーザーの皆様は料金なしでご利用いただけます。今後も無料でのご提供を続けることを予定しています。</p>
+</div>
+
+</div>
+</div>
+<!-- r31-tool-notice -->
+<div style="margin:1.5rem auto;max-width:760px;padding:0 1rem">
+<div style="padding:1.25rem 1.5rem;background:#fef3c7;border:1px solid #fbbf24;border-radius:.75rem">
+<h3 style="font-size:1rem;font-weight:700;margin:0 0 .75rem;color:#92400e">⚠️ ご利用時の注意事項</h3>
+<ul style="margin:0;padding-left:1.25rem;font-size:.88rem;color:#78350f;line-height:2">
+<li style='margin-bottom:.4rem'>本ツールの結果はあくまで参考情報です。実際の状況に応じてご判断ください</li>
+<li style='margin-bottom:.4rem'>重要な決定（医療・法律・財務等）を行う際は必ず専門家にご相談ください</li>
+<li style='margin-bottom:.4rem'>入力データはサーバーに送信されず、すべてブラウザ内で処理されます</li>
+<li style='margin-bottom:.4rem'>ブラウザの種類・バージョンにより一部機能が正常に動作しない場合があります</li>
+<li style='margin-bottom:.4rem'>本ツールの計算・診断ロジックは定期的に更新しています</li>
+</ul>
+</div>
+</div>
+<!-- r31-tool-references -->
+<div style="margin:1.5rem auto;max-width:760px;padding:0 1rem">
+<div style="padding:1.25rem 1.5rem;background:#f8fafc;border:1px solid #e2e8f0;border-radius:.75rem">
+<h3 style="font-size:1rem;font-weight:700;margin:0 0 .75rem;color:#1e293b">📚 関連する公的情報・参考リンク</h3>
+<ul style="margin:0;padding-left:1.25rem;font-size:.88rem;color:#374151;line-height:1.9">
+<li style='margin-bottom:.5rem'><a href="https://www.gov-online.go.jp/" target="_blank" rel="noopener noreferrer" style="color:#4f46e5">政府広報オンライン</a> — くらしに役立つ最新の政策・制度・行政情報</li>
+<li style='margin-bottom:.5rem'><a href="https://www.e-gov.go.jp/" target="_blank" rel="noopener noreferrer" style="color:#4f46e5">e-Gov 電子政府の総合窓口</a> — 法令・行政手続・公的制度の詳細情報</li>
+<li style='margin-bottom:.5rem'><a href="https://www.cao.go.jp/consumer/" target="_blank" rel="noopener noreferrer" style="color:#4f46e5">消費者庁</a> — 消費者の権利・安全・表示に関する公的情報</li>
+<li style='margin-bottom:.5rem'><a href="https://www.nhk.or.jp/life/" target="_blank" rel="noopener noreferrer" style="color:#4f46e5">NHK くらし解説</a> — 暮らしのさまざまな疑問をわかりやすく解説</li>
+</ul>
+</div>
+</div>
+<!-- r31-tool-about -->
+<div style="margin:1.5rem auto;max-width:760px;padding:0 1rem">
+<div style="padding:1.25rem 1.5rem;background:#f0f9ff;border:1px solid #bae6fd;border-radius:.75rem">
+<h3 style="font-size:1rem;font-weight:700;margin:0 0 .75rem;color:#0c4a6e">ℹ️ このツールについて</h3>
+<p style="margin:0;font-size:.88rem;color:#0c4a6e;line-height:1.9">「💳 ポイント・マイル最適化診断」はAppADayCreatorが提供する無料Webツールです。ライフスタイルに関する情報を素早く手軽に確認できます。会員登録・アプリインストール不要で、ブラウザからすぐにご利用いただけます。すべての処理はブラウザ内で完結するため、入力した情報が外部サーバーに送信されることはなく、プライバシーも保護されます。スマートフォン・タブレット・PCのすべてに対応したレスポンシブデザインを採用し、外出先や通勤中でも快適にご利用いただけます。AppADayCreatorでは、日常生活のあらゆるシーンで役立つWebツールを400本以上無料で提供しています。金融・健康・育児・キャリア・旅行など幅広いカテゴリのツールをご活用ください。</p>
+</div>
+</div>
+<!-- r31-extra-guide -->
+<div style="margin:1.5rem auto;max-width:760px;padding:0 1rem">
+<div style="background:white;border-radius:16px;padding:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.06)">
+<h2 style="font-size:1.05rem;font-weight:700;margin:0 0 1rem;border-left:4px solid #10b981;padding-left:10px;color:#1e293b">ライフスタイルツールの活用ガイド</h2>
+<p style="font-size:.88rem;color:#475569;line-height:1.9;margin:0 0 .75rem">
+本ツール「💳 ポイント・マイル最適化診断」は、ライフスタイルに関連する情報の確認・計算・診断をブラウザ上で手軽に行えるように設計されています。
+初回利用時にはまずフォームや入力欄に必要な情報を入力し、「計算」「診断」「確認」などのボタンを押してください。
+結果はリアルタイムで表示され、条件を変えながら何度でも再計算・再診断をお試しいただけます。
+ご不明な点があった場合は、各入力項目の横にある説明文や「？」アイコンをご確認ください。
+</p>
+<p style="font-size:.88rem;color:#475569;line-height:1.9;margin:0 0 .75rem">
+スマートフォンからのご利用でも、PC同様にすべての機能をお使いいただけます。
+スマートフォンのホーム画面に本ページを追加（ブックマーク）すれば、アプリのように素早くアクセスできます。
+ブラウザの印刷機能（Ctrl+P または右上メニュー）を使えば、結果をPDF形式で保存・印刷することが可能です。
+計算結果のスクリーンショットを家族・友人・専門家と共有するのもお勧めです。
+</p>
+<h3 style="font-size:.95rem;font-weight:700;margin:1rem 0 .6rem;color:#1e293b">AppADayCreator のツールの特徴</h3>
+<ul style="margin:0;padding-left:1.25rem;font-size:.88rem;color:#475569;line-height:2.1">
+<li><strong>完全無料・登録不要</strong> — アカウント作成・メールアドレス登録なしで今すぐご利用いただけます</li>
+<li><strong>プライバシー完全保護</strong> — 入力したデータはすべてブラウザ内で処理され、外部サーバーには一切送信されません</li>
+<li><strong>マルチデバイス完全対応</strong> — スマートフォン・タブレット・PCすべてで最適なレイアウトで表示されます</li>
+<li><strong>定期的なコンテンツ更新</strong> — 法改正・制度変更・最新データに対応した情報を随時更新しています</li>
+<li><strong>広告による持続的な無料運営</strong> — 広告収入によって運営しているため、ユーザーの皆様は永続的に無料でご利用いただけます</li>
+<li><strong>400本以上のツールを無料提供</strong> — お金・健康・育児・キャリア・旅行・住まいなど幅広いジャンルのツールをご活用ください</li>
+</ul>
+<h3 style="font-size:.95rem;font-weight:700;margin:1.25rem 0 .6rem;color:#1e293b">関連ツールのご紹介</h3>
+<p style="font-size:.88rem;color:#475569;line-height:1.9;margin:0">
+AppADayCreatorでは、本ツール以外にもライフスタイルカテゴリの便利なツールを多数ご提供しています。
+家計管理・健康記録・育児サポート・キャリア計画・旅行準備・住まいの整理など、日常生活のさまざまなシーンで役立つツールがそろっています。
+ぜひトップページから他のツールもご活用ください。すべて完全無料・登録不要でお使いいただけます。
+本ツールへのご意見・ご感想はお問い合わせページからお送りいただけます。皆様のフィードバックが品質改善につながります。
+</p>
+</div>
+</div>
+
 <!-- rakuten-affiliate-block -->
     <div style="border:1px solid #BF0000;background:#fff9f9;border-radius:10px;padding:14px;margin:12px auto;max-width:480px;text-align:center;">
       <p style="font-size:0.85rem;color:#4b5563;margin-bottom:8px;">🛒 関連商品を楽天市場で探す</p>
