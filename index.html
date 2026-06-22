@@ -239,22 +239,6 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
 .po-donut::after{content:"配分";font-size:11px;color:#64748b;font-weight:700;width:60px;height:60px;background:#fff;border-radius:50%;display:grid;place-items:center}
 .po-bars{display:flex;align-items:flex-end;gap:5px;height:70px;padding-top:6px;border-top:1px solid #e2e8f0}
 .po-bars i{flex:1;background:linear-gradient(180deg,#60a5fa,#2563EB);border-radius:3px 3px 0 0}
-.po-stage{position:relative}
-.po-float{position:absolute;z-index:3;background:#fff;border:1px solid #e2e8f0;border-radius:14px;box-shadow:0 16px 40px rgba(30,41,59,.16);display:flex;align-items:center;gap:10px;padding:10px 14px}
-.po-float .em{font-size:11px;color:#64748b;font-weight:700;line-height:1.2}
-.po-float .vv{font-size:21px;font-weight:900;color:#16a34a;letter-spacing:-.02em;line-height:1.1}
-.po-float-save{right:-14px;bottom:22px}
-.po-float-save .ring{width:40px;height:40px;border-radius:50%;background:#ecfdf5;display:grid;place-items:center;flex:0 0 auto}
-.po-float-person{top:-16px;left:-10px;padding:8px 12px}
-.po-float-person img{width:38px;height:38px;border-radius:50%;object-fit:cover}
-.po-float-person .nm{font-size:11px;font-weight:800;color:#1e293b;line-height:1.3}
-.po-float-person .st{color:#F59E0B;font-size:11px}
-.po-card-float{position:absolute;z-index:2;width:128px;border-radius:10px;overflow:hidden;box-shadow:0 14px 30px rgba(30,41,59,.22);transform:rotate(-8deg);left:-26px;top:30%;border:3px solid #fff}
-.po-card-float img{width:100%;height:78px;object-fit:cover;display:block}
-.po-ctab.split{display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:center;text-align:left}
-.po-ctab.split .pts{justify-content:flex-start}
-.po-ctab .ctimg{border-radius:16px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,.28)}
-.po-ctab .ctimg img{width:100%;height:210px;object-fit:cover;display:block}
 .po-sec{padding:56px 0}
 .po-shead{text-align:center;max-width:680px;margin:0 auto 36px}
 .po-shead .ey{color:#2563EB;font-weight:700;font-size:13px;letter-spacing:.08em}
@@ -293,8 +277,6 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
   .po-hero h1{font-size:30px}
   .po-g4,.po-g3{grid-template-columns:repeat(2,1fr)}
   .po-sec{padding:42px 0}.po-shead h2{font-size:23px}
-  .po-card-float{display:none}.po-float-person{left:4px}.po-float-save{right:4px}
-  .po-ctab.split{grid-template-columns:1fr;text-align:center}.po-ctab.split .pts{justify-content:center}
 }
 @media(max-width:520px){.po-g4,.po-g3{grid-template-columns:1fr}}
 </style>
@@ -347,7 +329,6 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
           <span class="po-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#F59E0B" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke="#F59E0B" stroke-width="2"/></svg>攻略ポイント</span>
         </div>
       </div>
-      <div class="po-stage">
       <div class="po-mock" aria-label="ライブプレビュー">
         <div class="cardimg"><img src="assets/photos/photo_06.jpg" alt="クレジットカード"></div>
         <div class="po-eco"><span class="on">楽天</span><span>Vポイント</span><span>PayPay</span><span>dポイント</span><span>au</span></div>
@@ -363,16 +344,6 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
           <div class="lb" style="margin-bottom:3px">月間獲得ポイント推移（予測）</div>
           <div class="po-bars"><i style="height:40%"></i><i style="height:55%"></i><i style="height:48%"></i><i style="height:70%"></i><i style="height:62%"></i><i style="height:80%"></i><i style="height:74%"></i><i style="height:90%"></i><i style="height:84%"></i><i style="height:96%"></i><i style="height:88%"></i><i style="height:100%"></i></div>
         </div>
-      </div>
-      <div class="po-card-float"><img src="assets/photos/photo_02.jpg" alt="クレジットカード"></div>
-      <div class="po-float po-float-person">
-        <img src="assets/photos/photo_15.jpg" alt="利用者">
-        <div><div class="nm">利用者満足度</div><div class="st">★★★★★ 4.8</div></div>
-      </div>
-      <div class="po-float po-float-save">
-        <div class="ring"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="em">年間お得額の目安</div><div class="vv">+254,790円</div></div>
-      </div>
       </div>
     </div>
   </section>
@@ -766,13 +737,10 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
 
   <!-- po-design CTA -->
   <div class="po-wrap">
-    <div class="po-ctab split">
-      <div>
-        <h2>あなたに合った最強カード組み合わせを無料で診断</h2>
-        <div class="pts"><span>✓ 最短30秒で結果が出る</span><span>✓ 複数経済圏に対応</span><span>✓ 手数料・失効も考えて安心設計</span></div>
-        <a href="#main" onclick="setTimeout(startDiagnosis,0)" class="po-btn po-primary">8問で無料診断を始める →</a>
-      </div>
-      <div class="ctimg"><img src="assets/photos/photo_22.jpg" alt="ポイント最適化で家計にゆとりを"></div>
+    <div class="po-ctab">
+      <h2>あなたに合った最強カード組み合わせを無料で診断</h2>
+      <div class="pts"><span>✓ 最短30秒で結果が出る</span><span>✓ 複数経済圏に対応</span><span>✓ 手数料・失効も考えて安心設計</span></div>
+      <a href="#main" onclick="setTimeout(startDiagnosis,0)" class="po-btn po-primary">8問で無料診断を始める →</a>
     </div>
   </div>
 
